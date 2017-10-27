@@ -11,10 +11,20 @@ aria-describedby="my-mdc-dialog-description">
   </header>
   <section id="my-mdc-dialog-description" class="mdc-dialog__body mdc-dialog__body--scrollable">
     <ul class="mdc-list">
-      <li class="mdc-list-item">.Kind: {{ .Kind }}</li>
-      <li class="mdc-list-item">.Type: {{ .Type }}</li>
+      <li class="mdc-list-item">[Default Passed]: {{ . }}</li>
       <li class="mdc-list-item">.Section: {{ .Section }}</li>
-      <li class="mdc-list-item">[Default]: {{ . }}</li>
+      <li class="mdc-list-item">.Type: {{ .Type }}</li>
+      <li class="mdc-list-item">.Kind: {{ .Kind }}</li>
+      {{ if .Sections }}
+      <li class="mdc-list-item">.Sections: {{ .Sections }}</li>
+      {{ end }}
+      {{ if .Pages }}
+      <li class="mdc-list-item">.Pages: {{ .Paginator.Pages }}</li>
+      {{ end }}
+      {{ if .Data.Pages }}
+      <li class="mdc-list-item">.Data.Pages: {{ .Data.Pages }}</li>
+      {{ end }}
+      {{ range $key, $value := .Params }}<i class="mdc-list-item"><pre>.Params.{{ $key }}: {{ $value }}</pre></i>{{ end }}
     </ul>
     <h1>VARIABLES (printf "%#v" .)</h1>
     <div><pre><code>{{ printf "%#v" . }}</code></pre></div>
