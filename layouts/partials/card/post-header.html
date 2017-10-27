@@ -4,12 +4,16 @@
       <h2 class="mdc-card__subtitle"><span class="mdc-theme--primary">{{ .Date.Format "Jan 2, 2006" }}</span></h2>
     </section>
     <section class="mdc-card__supporting-text">
-        {{ range .Params.categories }}
-        <a class="mdc-button mdc-button--stroked mdc-button--dense " href="{{ (print "/categories/" ( lower . )) | relURL }}">{{ . | humanize }}</a>
+      <p>
+        Categories: {{ range .Params.categories }}
+          <a class="mdc-button mdc-button--stroked mdc-button--dense " href="{{ (print "/categories/" ( lower . )) | relURL }}">{{ . | humanize }}</a>
         {{ end }}
-        {{ range .Params.tags }}
+      </p>
+      <p>
+        Tags: {{ range .Params.tags }}
         <a class="mdc-button mdc-button--stroked mdc-button--dense " href="{{ (print "/tags/" ( lower . )) | relURL }}">{{ . | humanize }}</a>
         {{ end }}
+        </p>
       </section>
     <section class="mdc-card__actions">
         {{- if isset $.Params "prev" -}}
@@ -20,4 +24,3 @@
         {{- end -}}
         </section>
   </div>
-  
