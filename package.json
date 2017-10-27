@@ -1,6 +1,6 @@
 {
   "name": "hugo-mdc-theme",
-  "version": "0.1.0",
+  "version": "0.2.0-beta",
   "description": "Default Theme for Hugo Material Design Component Sites",
   "main": "index.js",
   "repository": "",
