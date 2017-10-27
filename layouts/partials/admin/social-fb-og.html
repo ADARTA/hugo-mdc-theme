@@ -1,0 +1,13 @@
+{{ $.Scratch.Set "isArticle" false }}
+{{ if eq .Type "event"}}
+  {{ $.Scratch.Set "isArticle" true }}
+{{ else }}
+  {{ if eq .Type "post"}}
+    {{ $.Scratch.Set "isArticle" true }}
+  {{end}}
+{{end}}
+  
+{{ if ($.Scratch.Get "isArticle") }}
+<meta property="article:publisher" content="https://www.facebook.com/{{ if isset $.Params "facebook.site" }}{{ $.Param "facebook.site" }}{{else}}{{ .Site.Params.facebook.site }}{{end}}" />
+<meta property="article:author" content="http://facebook.com/{{ if isset $.Params "facebook.author" }}{{ $.Param "facebook.author" }}{{else}}{{ .Site.Params.facebook.author }}{{end}}" />
+{{ end }}

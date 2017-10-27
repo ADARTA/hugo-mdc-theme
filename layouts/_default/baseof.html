@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html class="no-js" lang="{{ with $.Site.LanguageCode }}{{ . }}{{ else }}en-us{{ end }}">
+  <head>
+    <meta charset="utf-8">
+    {{/* https://www.zachleat.com/web/preload/
+    <link rel="preload" href="{{ "files/somefont-200.woff2" | absURL }}" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ "files/somefont-400.woff2" | absURL }}" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ "files/somefont-800.woff2" | absURL }}" as="font" type="font/woff2" crossorigin>
+    */}}
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'>
+    <link rel="shortcut icon" href="/favicon.ico">
+    <style>
+      body {
+        font-family: 'Raleway';
+        font-size: 24px;
+      }
+    </style>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+     {{/* NOTE: the Site's title, and if there is a page title, that is set too */}}
+    <title>{{ block "title" . }}{{ .Site.Title }} {{ with .Title }} | {{ . }}{{ end }}{{ end }}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="{{ if isset .Site.Params "description" }}{{ .Site.Params.description }}{{ end }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="google" content="nositelinkssearchbox" />
+    {{ partial "admin/seo" .}}
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon-192x192.png">
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="{{ if isset .Site.Params "apptitle" }}{{ .Site.Params.apptitle }}{{ else }}Company Default Name{{ end}}">
+    <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png">
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+    <meta name="msapplication-TileColor" content="#3372DF">
+     {{ .Hugo.Generator }}
+
+      {{ if eq (getenv "HUGO_ENV") "production" | or (eq .Site.Params.env "production")  }}
+        <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+      {{ else }}
+        <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+      {{ end }}
+
+     <link rel="stylesheet" href="{{ "assets/theme/theme.min.css" | relURL }}" rel='stylesheet' type="text/css" />
+     {{ if isset .Site.Params "sitestyle" }}
+     <link rel="stylesheet" href="{{ .Site.Params.sitestyle | relURL  }}">
+     {{ end }}
+       {{- partial "head-additions.html" . -}}
+      {{- template "_internal/opengraph.html" . -}}
+      {{- template "_internal/google_news.html" . -}}
+      {{- template "_internal/schema.html" . -}}
+      {{- partial "twitter-cards.html" . -}}
+
+      {{ if eq (getenv "HUGO_ENV") "production" | or (eq .Site.Params.env "production")  }}
+        {{ template "_internal/google_analytics_async.html" . }}
+      {{ end }}
+  </head>
+  <body class="some-body{{ with getenv "HUGO_ENV" }} {{ . }}{{ end }}">
+      {{- if $.Param "menustyle" -}}
+      {{- $.Scratch.Set "menuStyle" ($.Param "menustyle") -}}
+      {{- else -}}
+      {{- $.Scratch.Set "menuStyle" "temporary" -}}
+      {{- end -}}
+    <section class="page-content--{{ $.Scratch.Get "menuStyle" }}">
+      {{ partial "menu-aside/menu" . }}
+      <div class="main-content--{{ $.Scratch.Get "menuStyle" }}">
+        {{ block "nav" . }}{{ partial "site-nav" . }}{{ end }}
+        {{ block "header" . }}{{ end }}
+        <main role="main"{{ if eq ($.Scratch.Get "menuStyle") "temporary"}} class="mdc-toolbar-fixed-adjust"{{ end }}>
+          {{ block "main" . }}{{ end }}
+        </main>
+      </div>
+    </section>
+    {{ block "debug" . }}{{ partial "admin/debug-dialog" .}}{{ end }}
+    {{ block "footer" . }}{{ partial "site-footer.html" . }}{{ end }}
+    {{ block "scripts" . }}{{- partial "site-scripts.html" . -}}{{ end }}
+
+  </body>
+</html>

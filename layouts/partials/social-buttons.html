@@ -1,0 +1,37 @@
+<div class="social">
+  {{ if isset .Site.Params "github" }}
+  <a class="github mdc-fab mdc-fab--plain" href="{{ .Site.Params.github | default "#" }}">
+      {{ partial "svg-icon/github.svg" }}
+  </a>
+  {{ end }}
+  {{ if isset .Site.Params "twitter" }}
+  <a class="no-bg mdc-fab mdc-fab" href="https://twitter.com/{{ .Site.Params.twitter.site | default "#" }}">
+      {{ partial "svg-icon/twitter.svg" }}
+  </a>
+  {{ end }}
+  {{ if isset .Site.Params "linkedin" }}
+  <a class="linkedin mdc-fab mdc-fab--plain" href="{{ .Site.Params.linkedin | default "#" }}">
+      {{ partial "svg-icon/linkedin.svg" }}
+  </a>
+  {{ end }}
+  {{ if isset .Site.Params "instagram" }}
+  <a class="mdc-fab mdc-fab" href="https://instagram.com/{{ .Site.Params.instagram.site | default "#" }}">
+      {{ partial "svg-icon/instagram.svg" }}
+  </a>
+  {{ end }}
+  {{ if isset .Site.Params "facebook" }}
+      <a class="mdc-fab mdc-fab" href="https://www.facebook.com/{{ .Site.Params.facebook.site | default "#" }}">
+      {{ partial "svg-icon/facebook.svg" }}
+      </a>
+  {{ end }}
+  {{ if isset .Site.Params "google" }}
+      <a class="mdc-fab mdc-fab" href="https://plus.google.com/+{{ .Site.Params.google.site | default "#" }}">
+      {{ partial "svg-icon/googleplus.svg" }}
+      </a>
+  {{ end }}
+  {{ if isset .Site.Params "email" }}
+  <a class="mdc-fab mdc-fab" href="mailto:{{ .Site.Params.email | default "me@example.com"}}?subject=Hi">
+      {{ partial "svg-icon/email.svg" }}
+  </a>
+  {{ end }}
+</div>

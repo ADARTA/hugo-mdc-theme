@@ -1,0 +1,8 @@
+/* My custom colors for the web components. */
+$mdc-theme-background: #E1D9D0;
+$mdc-theme-primary: #0A1922;
+$mdc-theme-secondary: #5A4444;
+$mdc-theme-custom: #001E29;
+
+/* Hides the debug snackbar if it exists off viewport */
+.mdc-snackbar { transform: translateY(100%); }

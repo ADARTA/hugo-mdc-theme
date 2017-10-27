@@ -1,0 +1,15 @@
+{{/* Pass a map of pages into this partial */}}
+{{ range . }}
+<div onclick="return goLocation('{{ .Permalink | relURL }}');" class="mdc-card demo-card demo-card--animation">
+  <section class="mdc-card__primary mdc-theme-primary">
+    <h1 class="mdc-card__title mdc-card__title--large"><span class="mdc-theme--secondary">{{ .Title }}</span></h1>
+    <h2 class="mdc-card__subtitle"><span class="mdc-theme--primary">{{ .Date.Format "January 2, 2006" }}</span></h2>
+  </section>
+  <section class="mdc-card__supporting-text">
+    {{ .Summary }}
+  </section>
+  <section class="mdc-card__actions">
+    <a href="{{ .Permalink | relURL }}" class="mdc-button mdc-button--stroked mdc-button--compact mdc-card__action">Read</a>
+  </section>
+</div>
+{{ end }}

@@ -1,0 +1,7 @@
+{{ $class := "mdc-icon-toggle material-icons" }}
+<i{{ if .id }} id="{{ .id }}"{{ end }} class="{{ if .class }}{{print $class (print " " .class)}}{{ else }}{{ $class }}{{ end }}" role="button" aria-pressed="false"
+aria-label="{{ if .labelondesc}}{{ .labelondesc }}{{ else }}Click to Toggle{{ end }}" tabindex="0"
+data-toggle-on='{"label": "{{ if .labeloffdesc}}{{ .labeloffdesc }}{{ else }}Click to Toggle Off{{ end }}", "content": "{{ if .iconon}}{{ .iconon }}{{ else }}favorite{{ end }}"}'
+data-toggle-off='{"label": "{{ if .labelondesc}}{{ .labelondesc }}{{ else }}Click to Toggle On{{ end }}", "content": "{{ if .iconoff}}{{ .iconoff }}{{ else }}favorite_border{{ end }}"}'{{ if .auto }} data-mdc-auto-init="MDCIconToggle"{{ end }}>
+{{ if .iconoff}}{{ .iconoff }}{{ else }}favorite_border{{ end }}
+</i><!-- mdc-icon-toggle--disabled -->

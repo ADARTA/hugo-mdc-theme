@@ -1,0 +1,2 @@
+{{ $class := "mdc-button" }}
+<button{{ if .id }} id="{{ .id }}"{{ end }} class="{{ if .class }}{{print $class (print " " .class)}}{{ else }}{{ $class }}{{ end }}"{{ if .auto }}data-mdc-auto-init="MDCRipple"{{ end }}{{if .disabled }} disabled{{end}}>{{ .value | default "My Button"}}</button> {{/* https://material.io/components/web/catalog/buttons/ */}}

@@ -1,0 +1,16 @@
+<header class="mdc-toolbar{{ if eq ($.Scratch.Get "menuStyle") "temporary" }} mdc-toolbar--fixed{{ end }}">
+  <div class="mdc-toolbar__row">
+    <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+      <i class="mdc-icon-toggle material-icons mdc-toolbar__icon--menu menu-show mdc-theme--text-primary-on-primary" role="button" aria-pressed="false"
+      aria-label="Open side menu" tabindex="0"
+      data-toggle-on='{"label": "Close side menu", "content": "close"}'
+      data-toggle-off='{"label": "Open side menu", "content": "menu"}'>
+      menu
+    </i>
+      <span class="mdc-toolbar__title">{{.Title}}</span>
+    </section>
+    <section class="mdc-toolbar__section mdc-toolbar__section--align-end mdc-theme--dark">
+      {{/* partial "menu/main" . */}}
+    </section>
+  </div>
+</header>

@@ -1,0 +1,7 @@
+classes = "mdc-fab--plain mdc-theme--primary"
+labelondesc = "Lock"
+labeloffdesc = "Unlock"
+iconon = "lock"
+iconoff = "lock_open"
+disabled = false
+auto = true

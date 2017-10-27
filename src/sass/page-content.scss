@@ -1,0 +1,50 @@
+/* Body */
+.some-body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+/* section content */
+.page-content--persistent {
+  display: flex;
+  flex-direction: row;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+}
+.main-content--persistent {
+  display: inline-flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 100%;
+  box-sizing: border-box;
+}
+/* child menu */
+.drop-menu.mdc-simple-menu--open {
+  top: 30px !important;
+}
+/* code */
+pre>code {
+  display: block;
+  padding: 15px;
+  overflow: auto;
+  font-size: 0.8em;
+  line-height: 1.4em;
+  border-radius: 0.2em;
+  @include mdc-theme-prop(background-color, text-hint-on-background);
+  @include mdc-theme-prop(color, text-primary-on-light);
+}
+.social a svg {
+  height: auto;
+  width: 80%;
+
+  fill: white;
+}
+.social a.linkedin svg, .social a.email svg  {
+  width: 50%;
+}
+a:not(.mdc-button) {
+  text-decoration: none;
+}

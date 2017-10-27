@@ -1,0 +1,6 @@
+<script src="{{ "/assets/theme/theme.min.js" | relURL }}"{{/* Required for theme to run */}}></script>
+{{ if isset .Site.Params "sitescript" }}
+<script src="{{ .Site.Params.sitescript  }}"></script>
+{{ end }}<!-- TODO: Copy this file to your site/layouts/partials directory with same name and
+  include site scripts if you plan to add more vendor scripts to your site and
+  don't want to change this theme internally. -->

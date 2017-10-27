@@ -1,0 +1,4 @@
+{{/* Pass a map of taxonomy pages into this partial */}}
+{{ range . }}
+<a class="mdc-button mdc-button--stroked mdc-button--dense " href="{{ .Permalink | relURL }}">{{ .Title }}</a>
+{{ end }}

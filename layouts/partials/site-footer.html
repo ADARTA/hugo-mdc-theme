@@ -1,0 +1,13 @@
+<footer class="mdc-footer mdc-typography">
+    <div class="mdc-layout-grid">
+        <div class="mdc-layout-grid__inner">
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--align-middle"></div>
+    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop">
+      {{ partial "social-buttons.html" . }}
+    </div>
+    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--align-middle">
+      <span>© {{ .Site.Params.copyrightyear | default (dateFormat "2006" now) }} {{ .Site.Params.author | default "ADARTA Software" }}</span>
+    </div>
+  </div>
+</div>
+</footer>

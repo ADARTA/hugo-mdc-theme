@@ -1,0 +1,51 @@
+{{- if (gt .Paginator.TotalPages 1) -}}
+
+{{ with .Paginator }}{{ $buttonClasses := "mdc-button mdc-button--dense mdc-button--compact"}}
+  <span class="pagination">
+  {{ if .Prev }}
+  <button class="{{ $buttonClasses }}" onclick="window.goLocation('{{ .First.URL }}');" aria-label="First">
+    <i class="material-icons mdc-button__icon">first_page</i>
+  </button>
+  <button class="{{ $buttonClasses }}" onclick="window.goLocation('{{ .Prev.URL }}');" aria-label="Prev">
+    <i class="material-icons mdc-button__icon">navigate_before</i>
+  </button>
+  {{ else }}
+  <button class="{{ $buttonClasses }}" aria-label="First" aria-disabled="true" disabled><i class="material-icons mdc-button__icon">first_page</i></button>
+  <button class="{{ $buttonClasses }}" aria-label="Prev" aria-disabled="true" disabled><i class="material-icons mdc-button__icon">navigate_before</i></button>
+  {{ end }}
+  {{ $currentPage := .PageNumber}}
+  {{ range .Pagers }}
+    <button class="{{ $buttonClasses }} mdc-button--raised"
+    onclick="window.goLocation('{{ .URL }}{{ if eq .PageNumber $currentPage }}#{{ end }}')" aria-label="Next"{{ if eq .PageNumber $currentPage }} aria-disabled="true" disabled{{ end }}>
+      {{ .PageNumber }}
+    </button>
+  {{ end }}
+  {{ if .Next }}
+  <button class="{{ $buttonClasses }}" onclick="window.goLocation('{{ .Next.URL }}');" aria-label="Next">
+    <i class="material-icons mdc-button__icon">navigate_next</i>
+  </button>
+  <button class="{{ $buttonClasses }}" onclick="window.goLocation('{{ .Last.URL }}{{ if eq (.Last.URL) (.URL) }}#{{ end }}');" aria-label="Last">
+    <i class="material-icons mdc-button__icon">last_page</i>
+  </button>
+  {{ else }}
+  <button class="{{ $buttonClasses }}" aria-label="Next" aria-disabled="true" disabled><i class="material-icons mdc-button__icon">navigate_next</i></button>
+  <button class="{{ $buttonClasses }}" aria-label="Next" aria-disabled="true" disabled><i class="material-icons mdc-button__icon">last_page</i></button>
+  {{ end }}
+</span>
+<!--<h2>Paginator Values</h2>
+<div>PageNumber={{ .PageNumber }}</div>
+<div>URL={{ .URL }}</div>
+<div>Pages={{ .Pages }}</div>s
+<div>NumberOfElements={{ .NumberOfElements }}</div>
+<div>HasPrev={{ .HasPrev }}</div>
+<div>Prev={{ .Prev }}</div>
+<div>HasNext={{ .HasNext }}</div>
+<div>Next={{ .Next }}</div>
+<div>First={{ .First }}</div>
+<div>Last={{ .Last }}</div>
+<div>Pagers={{ .Pagers }}</div>
+<div>PageSize={{ .PageSize }}</div>
+<div>TotalPages={{ .TotalPages }}</div>
+<div>TotalNumberOfElements={{ .TotalNumberOfElements }}</div>-->
+{{ end }}
+{{- end -}}

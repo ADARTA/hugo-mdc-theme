@@ -1,0 +1,4 @@
+classes = "mdc-fab--plain"
+auto = true
+icon = "favorite_border"
+disabled = false

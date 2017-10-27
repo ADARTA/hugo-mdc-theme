@@ -1,0 +1,16 @@
+{{ if isset .Params "twitter" }}
+<script>
+  var shareTwitter = function(url) {
+    var webIntentURL = 'https://twitter.com/intent/tweet';
+    var winparams='height=550,width=420,left=10,top=10,scrollbars=no,status=no,menubar=no';
+    var params = '?url=' + encodeURIComponent(url);
+    {{ if .Params.twitter.via }}params = params + '&via={{ .Params.twitter.via }};'{{ end }}
+    {{ if .Params.twitter.hashtags }}params = params + '&hashtags={{ .Params.twitter.hashtags }};'{{ end }}
+    {{ if .Params.twitter.text }}params = params + '&text={{ .Params.twitter.text }};'{{ end }}
+    if (params) {
+      webIntentURL = webIntentURL + params;
+    }
+    window.open(webIntentURL, '_blank', winparams);
+  }
+</script>
+{{ end }}

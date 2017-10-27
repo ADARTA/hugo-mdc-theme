@@ -1,0 +1,6 @@
+{{ $class := "mdc-fab" }}
+<button{{ if .id }} id="{{ .id }}"{{ end }} class="{{ if .class }}{{print $class (print " " .class)}}{{ else }}{{ $class }}{{ end }} material-icons"{{ if .auto }} data-mdc-auto-init="MDCRipple"{{ end }}{{if .disabled }} disabled{{end}}{{if .icon }} aria-label="{{ .icon }}"{{end}}>
+    <span class="mdc-fab__icon">
+        {{if .icon }}{{ .icon }}{{end}}
+      </span>
+</button> {{/* https://material.io/components/web/catalog/buttons/floating-action-buttons/ */}}

@@ -1,0 +1,15 @@
+<script type='application/ld+json'>
+  {
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "url": "https://{{ .Site.Params.domain }}",
+  "name": "{{ .Site.Params.companyname }}",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "{{ .Site.Params.contactphone }}",
+    "contactType": "{{ .Site.Params.contacttype }}",
+    "areaServed": "US",
+    "availableLanguage": "English"
+  }
+}
+</script>

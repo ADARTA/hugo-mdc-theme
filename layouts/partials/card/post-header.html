@@ -1,0 +1,23 @@
+<div class="mdc-card">
+    <section class="mdc-card__primary mdc-theme-primary">
+      <h1 class="mdc-card__title mdc-card__title--large"><span class="mdc-theme--secondary mdc-typography--display3">{{ .Title }}</span></h1>
+      <h2 class="mdc-card__subtitle"><span class="mdc-theme--primary">{{ .Date.Format "Jan 2, 2006" }}</span></h2>
+    </section>
+    <section class="mdc-card__supporting-text">
+        {{ range .Params.categories }}
+        <a class="mdc-button mdc-button--stroked mdc-button--dense " href="{{ (print "/categories/" ( lower . )) | relURL }}">{{ . | humanize }}</a>
+        {{ end }}
+        {{ range .Params.tags }}
+        <a class="mdc-button mdc-button--stroked mdc-button--dense " href="{{ (print "/tags/" ( lower . )) | relURL }}">{{ . | humanize }}</a>
+        {{ end }}
+      </section>
+    <section class="mdc-card__actions">
+        {{- if isset $.Params "prev" -}}
+        <a href="{{ $.Params.prev | relURL }}" class="mdc-button mdc-button--stroked mdc-button--compact mdc-card__action">Previous</a>
+        {{- end -}}
+        {{- if isset $.Params "next" -}}
+        <a href="{{ $.Params.prev | relURL }}" class="mdc-button mdc-button--stroked mdc-button--compact mdc-card__action">Next</a>
+        {{- end -}}
+        </section>
+  </div>
+  

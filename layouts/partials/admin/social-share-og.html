@@ -1,0 +1,15 @@
+<meta property="og:locale" content="{{ if isset $.Params "og.locale" }}{{ $.Param "og.locale" }}{{else}}{{ .Site.Params.og.locale }}{{end}}" />
+<meta property="og:type" content="{{ if isset $.Params "og.type" }}{{ $.Param "og.type" }}{{else}}{{ .Site.Params.og.type }}{{end}}" />
+<meta property="og:title" content="{{ if isset $.Params "og.title" }}{{ $.Param "og.title" }}{{ else }}{{ .Title }}{{ end }}" />
+<meta property="og:description" content="{{ if isset $.Params "og.description" }}{{ $.Param "og.description" }}{{else}}{{ .Summary }}{{end}}" />
+<meta property="og:url" content="{{ .Permalink }}" />
+<meta property="og:site_name" content="{{ if isset $.Params "og.site_name" }}{{ $.Param "og.site_name" }}{{else}}{{ .Site.Params.og.site_name }}{{end}}" />
+<meta property="og:image" content="https://{{ .Site.Params.domain }}{{ if isset $.Params "og.image" }}{{ $.Param "og.image" }}{{else}}{{ .Site.Params.og.image }}{{end}}" />
+{{ partial "admin/social-fb-og" . }}
+
+<meta name="twitter:card" content="{{ if isset $.Params "twitter.card" }}{{ $.Param "twitter.card" }}{{else}}{{ .Site.Params.twitter.card }}{{end}}" />
+<meta name="twitter:description" content="{{ if isset $.Params "twitter.description" }}{{ $.Param "twitter.description" }}{{else}}{{ .Site.Params.twitter.description }}{{end}}" />
+<meta name="twitter:title" content="{{ if isset $.Params "og.title" }}{{ $.Param "og.title" }}{{ else }}{{ .Title }}{{ end }}" />
+<meta name="twitter:site" content="@{{ if isset $.Params "twitter.site" }}{{ $.Param "twitter.site" }}{{else}}{{ .Site.Params.twitter.site }}{{end}}" />
+<meta name="twitter:image" content="https://{{ .Site.Params.domain }}{{ if isset $.Params "og.image" }}{{ $.Param "og.image" }}{{else}}{{ .Site.Params.og.image }}{{end}}" />
+<meta name="twitter:creator" content="@{{ if isset $.Params "twitter.site" }}{{ $.Param "twitter.site" }}{{else}}{{ .Site.Params.twitter.site }}{{end}}" />

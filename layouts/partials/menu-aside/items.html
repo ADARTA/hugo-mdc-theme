@@ -1,0 +1,26 @@
+<a class="mdc-list-item{{ if eq ("/" | relURL) (.URL | safeHTML) }} mdc-temporary-drawer--selected{{ end }}" href="{{"/" | relURL }}{{ if eq ($.Permalink | relURL) (.URL | safeHTML) }}#{{ end }}">
+  <span class="mdc-typography--title"><i class="material-icons mdc-list-item__start-detail" aria-hidden="true">home</i>HOME</span>
+</a>{{ $currentPage := . }}
+{{ range $key, $value := .Site.Menus }}
+  <li role="separator" class="mdc-list-divider"></li>
+  <div class="mdc-theme--primary-bg mdc-theme--text-primary-on-primary main-menu-title">
+    <span class="mdc-typography--title mdc-typography--adjust-margin">{{ $key | humanize }} Menu</span></div>
+  <li role="separator" class="mdc-list-divider"></li>
+  {{range $subkey, $subvalue := $value }}
+    {{ if .HasChildren }}
+      <li role="separator" class="mdc-list-divider"></li>
+      <div class="mdc-theme--primary-bg mdc-theme--text-primary-on-primary main-menu-title">
+        <span class="mdc-typography--title mdc-typography--adjust-margin">{{ .Name | humanize }}</span></div>
+      <li role="separator" class="mdc-list-divider"></li>
+        {{ range .Children }}
+          <a class="mdc-list-item{{if $currentPage.IsMenuCurrent "main" . }} mdc-temporary-drawer--selected{{ end }}" href="{{ .URL }}{{if $currentPage.IsMenuCurrent "main" . }}#{{ end }}">
+              <span class="mdc-typography--title">{{ .Name }}</span>
+          </a>
+        {{ end }}
+    {{ else }}
+      <a class="mdc-list-item{{ if eq ($.Permalink | relURL) (.URL | safeHTML) }} mdc-temporary-drawer--selected{{ end }}" href="{{ .URL }}{{ if eq ($.Permalink | relURL) (.URL | safeHTML) }}#{{ end }}">
+          <span class="mdc-typography--title">{{ if .Pre }}{{ .Pre }}{{ end }}{{ .Name }}</span>
+      </a>
+    {{ end }}
+ {{ end }}
+{{ end }}

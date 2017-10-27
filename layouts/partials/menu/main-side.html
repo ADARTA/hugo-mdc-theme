@@ -1,0 +1,21 @@
+{{ $currentPage := . }}
+{{ range .Site.Menus.main }}
+{{ if .HasChildren }}
+<div class="mdc-menu-anchor">
+  <button id="open-nav-button" class="mdc-button mdc-theme--text-{{if $currentPage.HasMenuCurrent "main" . }}disabled-on-primary{{ else }}primary-on-primary{{ end }}">
+    {{ .Name }}
+  </button>
+  <div id="child-menu" class="mdc-simple-menu drop-menu" tabindex="-1">
+    <ul class="mdc-simple-menu__items mdc-list" role="menu" aria-hidden="true">
+      {{ range .Children }}
+      <li class="mdc-list-item mdc-theme--text-{{if $currentPage.IsMenuCurrent "main" . }}disabled-on-primary{{ else }}primary-on-primary{{ end }}" role="menuitem" tabindex="-1" data-href="{{ .URL | relURL }}{{if $currentPage.IsMenuCurrent "main" . }}#{{ end }}" aria-disabled="{{if $currentPage.IsMenuCurrent "main" . }}true{{else}}false{{end}}">{{ .Name }}</li>
+      {{ end }}
+    </ul>
+  </div>
+</div>
+{{ else }}
+<div>
+<a class="menu-button mdc-button mdc-theme--text-{{if $currentPage.IsMenuCurrent "main" . }}disabled-on-primary{{ else }}primary-on-primary{{ end }}" href="{{ .URL | relURL }}{{if $currentPage.IsMenuCurrent "main" . }}#{{ end }}">{{ .Name }}</a>
+</div>
+{{ end }}
+{{ end }}

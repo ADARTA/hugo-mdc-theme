@@ -1,0 +1,5 @@
+<script type="text/javascript">// <![CDATA[
+  // Just a way to hide your data, at least we try (base64)
+  var liame ="{{ .text | base64Encode }}";
+  document.write(atob(liame))
+  // ]]></script>

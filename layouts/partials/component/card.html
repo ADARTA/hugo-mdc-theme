@@ -1,0 +1,13 @@
+{{ $class := "mdc-card" }}
+<div class="{{ if .class }}{{print $class (print " " .class)}}{{ else }}{{ $class }}{{ end }}">
+  <section class="mdc-card__primary">
+    <h1 class="mdc-card__title mdc-card__title--large">{{ .title }}</h1>
+    <h2 class="mdc-card__subtitle">{{ .subtitle }}</h2>
+  </section>
+  <section class="mdc-card__supporting-text">
+    {{ .text }}
+  </section>
+  <section class="mdc-card__actions">
+    {{ partial "component/button" .buttonsettings }}
+  </section>
+</div>

@@ -1,0 +1,26 @@
+{{ if isset .Site.Params "companyname" }}
+<script type='application/ld+json'>
+  {
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "{{ .Site.Params.companyname }}",
+    "alternateName": "{{ .Site.Params.alternatename }}",
+    "url": "https://{{ .Site.Params.domain }}"
+  }
+</script>
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Person",
+    "name": "{{ .Site.Params.companyname }}",
+    "url": "https://{{ .Site.Params.domain }}",
+    "sameAs": [
+      "http://www.facebook.com/{{ .Site.Params.facebook.site }}",
+      <!-- "http://instagram.com/yourProfile",
+  -->"http://twitter.com/{{ .Site.Params.twitter.site }}",
+      "http://plus.google.com/+{{ .Site.Params.google.site }}"
+    ]
+  }
+  </script>
+{{ end }}
+

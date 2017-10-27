@@ -1,0 +1,12 @@
+<div class="mdc-elevation--z5">
+  {{ range $key, $value := .Site.Taxonomies }}
+    {{ if gt (len $value) 0 }}
+    <div><a class="mdc-button mdc-theme--primary-bg mdc-theme--text-secondary-on-primary" href="{{ (print $key "/") | relURL }}">{{ $key }}</a></div>
+    <ul>
+      {{range $subkey, $subvalue := $value }}
+      <li><a class="mdc-button" href="{{ (print (print $key "/") $subkey) | relURL }}">{{ $subkey }}</a></li>
+      {{ end }}
+    </ul>
+    {{ end }}
+  {{ end }}
+</div>

@@ -1,0 +1,24 @@
+<!-- facebook-jssdk for Alves Photography Site (1418249194894066) -->
+{{ if isset .Site.Params "fbappid"}}
+  {{ if isset .Params "og" }}
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : {{ .Site.Params.fbappid }},
+          xfbml      : true,
+          version    : 'v2.8'
+        });
+        FB.AppEvents.logPageView();
+      };
+
+      (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+
+    </script>
+  {{ end }}
+{{ end }}
