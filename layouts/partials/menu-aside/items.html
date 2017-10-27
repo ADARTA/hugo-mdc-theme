@@ -9,7 +9,7 @@
   {{range $subkey, $subvalue := $value }}
     {{ if .HasChildren }}
       <li role="separator" class="mdc-list-divider"></li>
-      <div class="mdc-theme--primary-bg mdc-theme--text-primary-on-primary main-menu-title">
+      <div class="mdc-theme--primary-bg mdc-theme--text-primary-on-primary main-menu-title-sub">
         <span class="mdc-typography--title mdc-typography--adjust-margin">{{ .Name | humanize }}</span></div>
       <li role="separator" class="mdc-list-divider"></li>
         {{ range .Children }}
