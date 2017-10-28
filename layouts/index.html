@@ -7,76 +7,35 @@
   <div class="mdc-layout-grid">
     <div class="mdc-layout-grid__inner">
       <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-8-tablet mdc-theme--primary"></div>
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-7-desktop mdc-layout-grid__cell--span-8-tablet mdc-theme--primary">
-      <div class="mdc-layout-grid__inner">
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-theme--primary mdc-layout-grid__cell--align-middle">
-        <div class="mdc-card">
-            <section class="mdc-card__primary" style="text-align: center">
-              <h1 class="mdc-card__title mdc-card__title--large"><span class="mdc-theme--primary mdc-typography--display3">Material Design Components</span></h1>
-              <h2 class="mdc-card__subtitle--large"><span class="mdc-theme--secondary">{{ .Title }}</span></h2>
-            </section>
-          </div>
-      </div>
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-theme--primary">
-
-      <section>
-        <h1>Default Theme - <span class="mdc-theme--secondary">No build scripts needed</span></h1>
-        <p>You can just include the build from the components CDN and not worry about what is compiled into the theme.</p>
-        {{ $linkbutton := (dict "href" "https://material.io/components/web/" "target" "_blank" "class" "mdc-button--raised mdc-theme--primary-bg mdc-theme--text-primary-on-primary" "auto" true "value" "Material Components - Web") }}{{ partial "component/link-button" ($linkbutton) }}
-        {{ $linkbutton := (dict "href" "https://gohugo.io/" "target" "_blank" "class" "mdc-button--raised mdc-theme--primary-bg mdc-theme--text-primary-on-primary" "auto" true "value" "Hugo Site") }}{{ partial "component/link-button" ($linkbutton) }}
-      </section>
-      <section>
-        <h1>Custom Theme - <span class="mdc-theme--secondary">Build scripts; Minimum sized</span></h1>
-        <p>The theme you see here was built only using minimal assets. Only the components needed for this site are compiled into the theme.</p>
-      </section>
-      <section>
-        <h3>Example Components:</h3>
-        <ul>
-          <li>
-              <div>
-                <div class="mdc-theme--secondary">Button with Ripple Effect</div>
-              <p>{{ $button := (dict "class" "mdc-button--raised mdc-theme--primary-bg mdc-theme--text-primary-on-primary" "auto" true "value" "Click Me Real Good") }}{{ partial "component/button" ($button) }}</p>
-            </div>
-          </li>
-          <li>
-              <div class="mdc-theme--secondary">FAB (Floating Action Button)</div>
-              <div><p>{{ partial "component/fab-button" .Site.Data.settings.fabbutton }}</p></div>
-          </li>
-          <li>
-              <div class="mdc-theme--secondary">Toggle Button (using Material Icons)</div3>
-              <div><p>{{ $testToggle := (dict "id" "testToggle" "class" "mdc-fab--plain mdc-theme--primary" "labelondesc" "Lock" "labeloffdesc" "Unlock" "iconon" "lock" "iconoff" "lock_open" "auto" true) }}{{ partial "component/toggle-button" $testToggle }}</p></div>
-          </li>
-      </ul>
-    </section>
-
-    <section>
-      <h3>Shortcode Components:</h3>
-      <ul>
-        <li>
-            <div>
-              <div class="mdc-theme--secondary">Button from Front Matter</div>
-            <p>{{ $button := (dict "class" "mdc-button--raised mdc-theme--primary-bg mdc-theme--text-primary-on-primary" "auto" true "value" "A Button Like This") }}{{ partial "component/link-button" ($button) }}</p>
-            <pre><code><span>{{ print "{{% " "mdc-link-button href=\"/\" class=\"mdc-button--raised mdc-theme--primary-bg mdc-theme--text-primary-on-primary\" auto=true value=\"A Button Like This\"" " %}}" }}</span></code></pre>
-          </div>
-        </li>
-    </ul>
-    </section>
-  </div>
-</div>
-</div>
-<div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-8-tablet mdc-theme--primary">
-    <div class="mdc-layout-grid__inner">
-        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-theme--primary">
-            <section class="mdc-theme--primary-bg mdc-theme--dark mdc-elevation--z3">
-                {{ partial "menu/main-side" . }}
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-9-desktop mdc-layout-grid__cell--span-8-tablet mdc-theme--primary">
+        <div class="mdc-layout-grid__inner">
+          <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-theme--primary mdc-layout-grid__cell--align-middle">
+            <div class="mdc-card">
+              <section class="mdc-card__primary" style="text-align: center">
+                <h1 class="mdc-card__title mdc-card__title--large">
+                  <span class="mdc-theme--primary mdc-typography--display3">{{ .Site.Params.description }}</span>
+                </h1>
+                <h2 class="mdc-card__subtitle--large">
+                  <span class="mdc-theme--secondary">{{ .Title }}</span>
+                </h2>
               </section>
+            </div>
           </div>
           <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-theme--primary">
+            {{ range where .Data.Pages.ByDate "Type" "splash" }}
+              {{ .Content }}
+            {{ end }}
+          </div>
+        </div>
+      </div>
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2-desktop mdc-layout-grid__cell--span-8-tablet mdc-theme--primary">
+        <div class="mdc-layout-grid__inner">
+          <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-theme--primary">
             {{ partial "taxonomies" . }}
-            </div>
-            </div>
-</div>
-</div>
-</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 {{ end }}
