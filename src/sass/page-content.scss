@@ -4,6 +4,12 @@
   margin: 0;
   box-sizing: border-box;
 }
+::selection {
+  @include mdc-theme-prop(background, secondary-light);
+}
+::-moz-selection {
+  @include mdc-theme-prop(background, secondary-light);
+}
 /* section content */
 .page-content--persistent {
   display: flex;
@@ -46,5 +52,7 @@ pre>code {
   width: 50%;
 }
 a:not(.mdc-button) {
+  @include mdc-theme-prop(color, secondary);
+  font-weight: 900;
   text-decoration: none;
 }
