@@ -2,6 +2,7 @@
 <html class="no-js" lang="{{ with $.Site.LanguageCode }}{{ . }}{{ else }}en-us{{ end }}">
   <head>
     <meta charset="utf-8">
+    <link rel="canonical" href="https://{{ .Site.Params.domain }}{{.URL | relURL }}"/>
     {{/* https://www.zachleat.com/web/preload/
     <link rel="preload" href="{{ "files/somefont-200.woff2" | absURL }}" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="{{ "files/somefont-400.woff2" | absURL }}" as="font" type="font/woff2" crossorigin>
@@ -16,7 +17,12 @@
         font-size: 24px;
       }
     </style>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    {{ if eq (getenv "HUGO_ENV") "production" }}
+    <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+    {{ else }}
+    <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    {{ end }}
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
      {{/* NOTE: the Site's title, and if there is a page title, that is set too */}}
     <title>{{ block "title" . }}{{ .Site.Title }} {{ with .Title }} | {{ . }}{{ end }}{{ end }}</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -38,7 +44,7 @@
     <!-- Tile icon for Win8 (144x144 + tile color) -->
     <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
     <meta name="msapplication-TileColor" content="#3372DF">
-     {{ .Hugo.Generator }}
+    {{ .Hugo.Generator }}
 
       {{ if eq (getenv "HUGO_ENV") "production" | or (eq .Site.Params.env "production")  }}
         <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
@@ -56,7 +62,7 @@
       {{- template "_internal/schema.html" . -}}
       {{- partial "twitter-cards.html" . -}}
 
-      {{ if eq (getenv "HUGO_ENV") "production" | or (eq .Site.Params.env "production")  }}
+      {{ if eq (getenv "HUGO_ENV") "production" }}
         {{ template "_internal/google_analytics_async.html" . }}
       {{ end }}
   </head>
