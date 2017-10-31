@@ -2,6 +2,12 @@
 <html class="no-js" lang="{{ with $.Site.LanguageCode }}{{ . }}{{ else }}en-us{{ end }}">
   <head>
     <meta charset="utf-8">
+    {{ if eq (getenv "HUGO_ENV") "production" }}
+    {{ partial "admin/google_tag_manager_head.html" . }}
+    <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+    {{ else }}
+    <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    {{ end }}
     <link rel="canonical" href="https://{{ .Site.Params.domain }}{{.URL | relURL }}"/>
     {{/* https://www.zachleat.com/web/preload/
     <link rel="preload" href="{{ "files/somefont-200.woff2" | absURL }}" as="font" type="font/woff2" crossorigin>
@@ -17,11 +23,6 @@
         font-size: 24px;
       }
     </style>
-    {{ if eq (getenv "HUGO_ENV") "production" }}
-    <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
-    {{ else }}
-    <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
-    {{ end }}
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
      {{/* NOTE: the Site's title, and if there is a page title, that is set too */}}
     <title>{{ block "title" . }}{{ .Site.Title }} {{ with .Title }} | {{ . }}{{ end }}{{ end }}</title>
@@ -45,13 +46,6 @@
     <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
     <meta name="msapplication-TileColor" content="#3372DF">
     {{ .Hugo.Generator }}
-
-      {{ if eq (getenv "HUGO_ENV") "production" | or (eq .Site.Params.env "production")  }}
-        <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
-      {{ else }}
-        <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
-      {{ end }}
-
      <link rel="stylesheet" href="{{ "assets/theme/theme.min.css" | relURL }}" rel='stylesheet' type="text/css" />
      {{ if isset .Site.Params "sitestyle" }}
      <link rel="stylesheet" href="{{ .Site.Params.sitestyle | relURL  }}">
@@ -62,16 +56,19 @@
       {{- template "_internal/schema.html" . -}}
       {{- partial "twitter-cards.html" . -}}
 
-      {{ if eq (getenv "HUGO_ENV") "production" }}
-        {{ template "_internal/google_analytics_async.html" . }}
-      {{ end }}
+      {{- if eq (getenv "HUGO_ENV") "production" -}}
+        {{ partial "admin/google_analytics_async.html" . }}
+      {{- end -}}
   </head>
   <body class="some-body{{ with getenv "HUGO_ENV" }} {{ . }}{{ end }}">
-      {{- if $.Param "menustyle" -}}
-      {{- $.Scratch.Set "menuStyle" ($.Param "menustyle") -}}
-      {{- else -}}
-      {{- $.Scratch.Set "menuStyle" "temporary" -}}
-      {{- end -}}
+    {{- if eq (getenv "HUGO_ENV") "production" -}}
+    {{ partial "admin/google_tag_manager_body.html" . }}
+    {{- end -}}
+    {{- if $.Param "menustyle" -}}
+    {{- $.Scratch.Set "menuStyle" ($.Param "menustyle") -}}
+    {{- else -}}
+    {{- $.Scratch.Set "menuStyle" "temporary" -}}
+    {{- end -}}
     <section class="page-content--{{ $.Scratch.Get "menuStyle" }}">
       {{ partial "menu-aside/menu" . }}
       <div class="main-content--{{ $.Scratch.Get "menuStyle" }}">
