@@ -4,6 +4,24 @@ const webpack = require("webpack");
 const setup = require("./src/lib/webpack-setup");
 console.log("env", process.env.NODE_ENV);
 
+const banner = [
+  '/*!',
+  ' Hugo MDC Theme',
+  ` Copyright (c) ${new Date().getFullYear()} ADARTA Inc.`,
+  ' License: MIT',
+  '*/',
+  '/*!',
+  ' Material Components for the web',
+  ` Copyright (c) ${new Date().getFullYear()} Google Inc.`,
+  ' License: Apache-2.0',
+  '*/',
+].join('\n');
+const createBannerPlugin = () => new webpack.BannerPlugin({
+  banner: banner,
+  raw: true,
+  entryOnly: true,
+});
+
 module.exports = {
   module: {
     rules: [
@@ -58,6 +76,7 @@ module.exports = {
     new webpack.DefinePlugin({
       APP_VERSION: JSON.stringify(`${require("./package.json").version}`),
     }),
+    createBannerPlugin(),
   ],
   devtool: setup.sourceMapType,
   devServer: {
