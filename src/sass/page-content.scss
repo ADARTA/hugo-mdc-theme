@@ -5,7 +5,8 @@
   box-sizing: border-box;
 }
 ::selection {
-  @include mdc-theme-prop(background, secondary-light);
+  background: $mdc-theme-primary-light;
+  // @include mdc-theme-prop(background, secondary-light); Edge bug using var
 }
 ::-moz-selection {
   @include mdc-theme-prop(background, secondary-light);
